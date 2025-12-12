@@ -101,51 +101,86 @@
           { name: 'DEZEMBRO', days: 31, startDay: 2, colorTheme: 'bg-red-600' },
         ];
 
+        // Função auxiliar para criar intervalo de datas (Range)
+        const createRange = (month, startDay, endDay, type, description) => {
+          const events = [];
+          for (let i = startDay; i <= endDay; i++) {
+            events.push({ month, day: i, type, description });
+          }
+          return events;
+        };
+
         const EVENTS = [
+          // JANEIRO
           { month: 0, day: 1, type: EventType.HOLIDAY, description: "Confraternização Universal" },
           { month: 0, day: 3, type: EventType.RECESS, description: "Fim do recesso/revezamento" },
-          { month: 0, day: 5, type: EventType.EVENT, description: "Abertura Cursos Técnicos" },
+          
+          // Intervalo: 05 a 19 - Abertura Cursos
+          ...createRange(0, 5, 19, EventType.EVENT, "Abertura Cursos Técnicos"),
+          
           { month: 0, day: 13, type: EventType.PLANNING, description: "Início avaliação docente" },
-          { month: 0, day: 19, type: EventType.MEETING, description: "Reunião Pedagógica (Início)" },
-          { month: 0, day: 20, type: EventType.MEETING, description: "Reunião Pedagógica" },
-          { month: 0, day: 21, type: EventType.MEETING, description: "Reunião Pedagógica" },
-          { month: 0, day: 22, type: EventType.MEETING, description: "Reunião Pedagógica" },
-          { month: 0, day: 23, type: EventType.MEETING, description: "Reunião Pedagógica (Fim)" },
+          
+          // Intervalo: 19 a 23 - Reunião Pedagógica
+          ...createRange(0, 19, 23, EventType.MEETING, "Reunião Pedagógica"),
+          
           { month: 0, day: 24, type: EventType.EVENT, description: "PSE - Vestibular Indígenas/Quilombolas" },
           { month: 0, day: 26, type: EventType.START_END, description: "Início das Aulas" },
           { month: 0, day: 30, type: EventType.RECESS, description: "Fim das férias acadêmicas" },
+
+          // FEVEREIRO
           { month: 1, day: 2, type: EventType.HOLIDAY, description: "Nossa Senhora dos Navegantes (Porto Velho)" },
           { month: 1, day: 13, type: EventType.PLANNING, description: "Limite envio ofertas 2026/1" },
           { month: 1, day: 16, type: EventType.RECESS, description: "Recesso + Carnaval" },
           { month: 1, day: 17, type: EventType.RECESS, description: "Recesso + Carnaval" },
+
+          // ABRIL
           { month: 3, day: 3, type: EventType.HOLIDAY, description: "Paixão de Cristo" },
           { month: 3, day: 21, type: EventType.HOLIDAY, description: "Tiradentes" },
+
+          // MAIO
           { month: 4, day: 1, type: EventType.HOLIDAY, description: "Dia do Trabalho" },
           { month: 4, day: 8, type: EventType.EVENT, description: "Dia do Profissional Marketing/E-Turismo" },
           { month: 4, day: 24, type: EventType.HOLIDAY, description: "Nossa Senhora Auxiliadora (Padroeira)" },
+
+          // JUNHO
           { month: 5, day: 3, type: EventType.EVENT, description: "Dia do Profissional de RH" },
           { month: 5, day: 4, type: EventType.HOLIDAY, description: "Corpus Christi" },
           { month: 5, day: 6, type: EventType.EVENT, description: "Dia da Logística" },
           { month: 5, day: 18, type: EventType.HOLIDAY, description: "Dia do Evangélico (RO)" },
           { month: 5, day: 19, type: EventType.EVENT, description: "Jogo do Brasil (Copa)" },
           { month: 5, day: 24, type: EventType.EVENT, description: "Jogo do Brasil (Copa)" },
-          { month: 6, day: 8, type: EventType.EXAM, description: "Início Avaliação Cursos" },
-          { month: 6, day: 12, type: EventType.EXAM, description: "Fim Avaliação Cursos" },
+
+          // JULHO
+          // Intervalo: 8 a 12 - Avaliação Cursos
+          ...createRange(6, 8, 12, EventType.EXAM, "Período Avaliação Cursos"),
+          
           { month: 6, day: 15, type: EventType.EVENT, description: "Formatura Técnicos" },
-          { month: 6, day: 16, type: EventType.MEETING, description: "Reunião Pedagógica IDEP" },
-          { month: 6, day: 19, type: EventType.MEETING, description: "Fim Reunião Pedagógica" },
+          
+          // Intervalo: 15 a 19 - Reunião Pedagógica IDEP
+          ...createRange(6, 15, 19, EventType.MEETING, "Reunião Pedagógica IDEP"),
+          
           { month: 6, day: 20, type: EventType.START_END, description: "Retorno do Recesso" },
+
+          // SETEMBRO
           { month: 8, day: 7, type: EventType.HOLIDAY, description: "Independência do Brasil" },
-          { month: 8, day: 14, type: EventType.EVENT, description: "Semana Ed. Profissional" },
-          { month: 8, day: 18, type: EventType.EVENT, description: "Fim Semana Ed. Profissional" },
+          
+          // Intervalo: 14 a 18 - Semana Ed. Profissional
+          ...createRange(8, 14, 18, EventType.EVENT, "Semana Ed. Profissional"),
+          
           { month: 8, day: 30, type: EventType.EVENT, description: "Dia do Secretário" },
+
+          // OUTUBRO
           { month: 9, day: 2, type: EventType.RECESS, description: "Criação do Município (Porto Velho)" },
           { month: 9, day: 4, type: EventType.EVENT, description: "Dia do Técnico Seg. Trabalho" },
           { month: 9, day: 12, type: EventType.HOLIDAY, description: "Nossa Senhora Aparecida" },
           { month: 9, day: 27, type: EventType.EVENT, description: "Dia do Engenheiro Civil" },
+
+          // NOVEMBRO
           { month: 10, day: 2, type: EventType.HOLIDAY, description: "Finados" },
           { month: 10, day: 15, type: EventType.HOLIDAY, description: "Proclamação da República" },
           { month: 10, day: 20, type: EventType.HOLIDAY, description: "Consciência Negra" },
+
+          // DEZEMBRO
           { month: 11, day: 18, type: EventType.START_END, description: "Último dia letivo" },
           { month: 11, day: 25, type: EventType.HOLIDAY, description: "Natal" },
         ];
@@ -468,6 +503,14 @@
             });
           }, []);
 
+          // Helper to check for sequential ranges to reduce clutter in table
+          // (Optional optimization: group same events in sequence)
+          const groupedEvents = useMemo(() => {
+             // For now, keep detailed list as requested, but maybe distinct events are better?
+             // Let's keep it simple: list all.
+             return sortedEvents;
+          }, [sortedEvents]);
+
           return (
             <div className="mt-8 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
               <div className="bg-slate-50 p-4 border-b border-slate-200 flex items-center gap-2">
@@ -486,10 +529,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {sortedEvents.map((event, idx) => {
+                    {groupedEvents.map((event, idx) => {
                       const weekDay = getWeekDayName(YEAR, event.month, event.day);
                       const legendLabel = getLegendLabel(event.type);
-                      const showMonth = idx === 0 || sortedEvents[idx-1].month !== event.month;
+                      const showMonth = idx === 0 || groupedEvents[idx-1].month !== event.month;
                       const badgeStyle = getEventColorStyles(event.type);
 
                       return (
